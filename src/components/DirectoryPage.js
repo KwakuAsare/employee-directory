@@ -6,7 +6,8 @@ import API from "../utils/API";
 class DirectoryPage extends Component {
     state = {
         search: "",
-        results: []
+        results: [],
+        asc: true
     }
 
     componentDidMount() {
@@ -33,7 +34,23 @@ class DirectoryPage extends Component {
         this.searchEmp(this.state.search);
     };
 
+    handleSorting = () => {
+        this.setState({
+                asc: !this.state.asc
+              })
+            
+    }
+
     render() {
+
+       const filteredres = this.state.results.filter((result) => {
+            console.log(result);
+            if (result.name.first.includes(this.state.search)) {
+                return true
+            } 
+            return false;
+        })
+        //add sorting here
         return(
             <div>
         <EmployeeSearch
@@ -41,7 +58,7 @@ class DirectoryPage extends Component {
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
         />
-        <EmployeeList results={this.state.results} />
+        <EmployeeList results={filteredres} handleSorting={this.handleSorting} />
       </div>
         )
     }

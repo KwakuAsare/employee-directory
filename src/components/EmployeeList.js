@@ -19,7 +19,7 @@ function EmployeeList(props) {
             <thead>
                 <tr>
                     <th scope="col">Image</th>
-                    <th scope="col">Name</th>
+                    <th scope="col" onClick={props.handleSorting}>Name</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Email</th>
                     <th scope="col">Age</th>
